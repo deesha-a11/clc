@@ -1,48 +1,14 @@
 import type { NextConfig } from "next";
 
-
-/** @type {import('next').NextConfig} */
-const nextConfig = {
+const nextConfig: NextConfig = {
+  reactStrictMode: true,
+  swcMinify: true,
   eslint: {
-    ignoreDuringBuilds: true,
-  },
-  import type { NextConfig } from "next";
-
-
-/** @type {import('next').NextConfig} */
-const nextConfig = {
-  eslint: {
-    ignoreDuringBuilds: true,
-  },
-};
- eslint: {
-    ignoreDuringBuilds: true,
+    ignoreDuringBuilds: true, // ✅ prevent build fail on lint errors
   },
   typescript: {
-    ignoreBuildErrors: true,
+    ignoreBuildErrors: true, // ✅ prevent build fail on TS errors
   },
-
-
-
-
-
-
-  
 };
 
-
-module.exports = nextConfig;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+export default nextConfig;
