@@ -16,9 +16,11 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include 
-
+def home(request):
+    return HttpResponse("Hello, CLC!")
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('', home),  # root path
     path("", include("websiteapp.urls")),
     path("", include("web3djangoapp.urls")),
 ]
