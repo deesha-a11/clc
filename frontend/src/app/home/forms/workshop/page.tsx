@@ -49,7 +49,7 @@ const handleSubmit = async (e: React.FormEvent) => {
   };
 
   try {
-    const res = await fetch("http://127.0.0.1:8000/workshop/", {
+    const res = await fetch("https://www.clcclc.work.gd/workshop/", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(data),
