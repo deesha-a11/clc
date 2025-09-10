@@ -50,27 +50,26 @@ const handleSubmit = async (e: React.FormEvent) => {
 
   try {
     const res = await fetch("https://www.clcclc.work.gd/workshop/", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      "X-API-KEY": process.env.WORKSHOP_PUBLIC_KEY ?? "", // from Vercel env, fallback to empty string
-    },
-    body: JSON.stringify(data),
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        // ❌ removed X-API-KEY
+      },
+      body: JSON.stringify(data),
     });
 
     if (res.ok) {
       alert("✅ Registration successful!");
     } else {
-      const err = await res.json();
-      console.error(err);
-      alert("❌ Error: " + JSON.stringify(err));
+      const text = await res.text(); // read full response (not only JSON)
+      console.error("❌ Backend error:", text);
+      alert(`❌ Server responded with status ${res.status}: ${text}`);
     }
-  } catch (error) {
-    console.error("Error:", error);
-    alert("⚠️ Failed to connect to server.");
+  } catch (error: any) {
+    console.error("⚠️ Network/Fetch error:", error);
+    alert(`⚠️ Request failed: ${error.message || error}`);
   }
 };
-
 
 
   return (
