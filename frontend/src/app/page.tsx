@@ -473,13 +473,14 @@ function Hero() {
       <div className="w-[20%] h-full relative">
         <AnimatePresence>
           {isOpen && (
-            <motion.div
-              initial={{ x: "100%" }}
-              animate={{ x: 0 }}
-              exit={{ x: "100%" }}
-              transition={{ duration: 0.6, ease: "easeInOut" }}
-              className="h-full w-full bg-black/70 backdrop-blur-xl shadow-2xl border-l border-white/10 p-8 z-20"
-            >
+          <motion.div
+            initial={{ x: "100%" }}
+            animate={{ x: 0 }}
+            exit={{ x: "100%" }}
+            transition={{ duration: 0.6, ease: "easeInOut" }}
+            className="h-[95%] w-[95%] bg-black/70 backdrop-blur-xl shadow-2xl border-l border-white/10 p-5 z-20 mx-auto my-auto "
+          >
+
               {/* Close Button */}
               <button
                 onClick={() => setIsOpen(false)}
