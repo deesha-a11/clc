@@ -49,10 +49,13 @@ const handleSubmit = async (e: React.FormEvent) => {
   };
 
   try {
-    const res = await fetch("https://www.clcclc.work.gd/workshop/", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(data),
+    const res = await fetch("https://www.clcclc.gd/workshop/", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "X-API-KEY": process.env.WORKSHOP_PUBLIC_KEY, // from Vercel env
+    },
+    body: JSON.stringify(data),
     });
 
     if (res.ok) {
