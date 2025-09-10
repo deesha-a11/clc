@@ -264,7 +264,7 @@ function AnimatedBackground() {
 
       {/* Company logo as background (faint) */}
       <Image
-        src="/rwhite.png"
+        src="/newl.png"
         alt="Career Lab Consulting Background Logo"
         fill
         priority
