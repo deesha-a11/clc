@@ -14,7 +14,9 @@ from pathlib import Path
 import os
 from dotenv import load_dotenv
 load_dotenv()  # loads .env if present
-
+CORS_ALLOWED_ORIGINS = [
+    "https://www.clcclc.gd",
+]
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 # settings.py
