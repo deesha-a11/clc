@@ -756,7 +756,7 @@ export default function HomePage() {
           {/* Logo Section (independent) */}
           <div className="flex items-center">
             <Image
-              src="/cwhite.png"
+              src="/newl.png"
               alt="Career Lab Consulting Logo"
               width={220}
               height={220}
@@ -1542,7 +1542,7 @@ export default function HomePage() {
           {/* Company Logo */}
           <div className="mt-6 mb-4 flex justify-end">
             <img
-              src="/rwhite.png"
+              src="/newl.png"
               alt="Company Logo"
               className="h-12 object-contain mr-10 -mt-15 mb-0"
             />
