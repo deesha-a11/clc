@@ -35,8 +35,8 @@ DEBUG = os.getenv("DEBUG", "False") == "True"
 
 
 ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS", "").split(",")
-CORS_ALLOW_ALL_ORIGINS = False  # (or set specific origins)
-CORS_ALLOWED_ORIGINS = os.getenv("CORS_ALLOWED_ORIGINS", "").split(",") if os.getenv("CORS_ALLOWED_ORIGINS") else []
+CORS_ALLOW_ALL_ORIGINS = true  # (or set specific origins)
+
 
 
 
