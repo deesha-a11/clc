@@ -20,7 +20,7 @@ CORS_ALLOWED_ORIGINS = [
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 # settings.py
-WORKSHOP_PUBLIC_KEY = "your-super-secret-public-key"
+# WORKSHOP_PUBLIC_KEY = "your-super-secret-public-key"
 AUTH_USER_MODEL = "web3djangoapp.CustomUser"
 
 # Quick-start development settings - unsuitable for production
