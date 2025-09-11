@@ -51,29 +51,42 @@ const WorkshopRegistration: React.FC = () => {
 
     try {
       const res = await fetch(`${apiBase}/workshop/`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          // "X-API-KEY": process.env.NEXT_PUBLIC_API_KEY || "", // add if needed
-        },
-        body: JSON.stringify(data),
-        credentials: "include", // only if using cookies/sessions
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        // "X-API-KEY": process.env.NEXT_PUBLIC_API_KEY || "", // add if needed
+      },
+      body: JSON.stringify(data),
+      credentials: "include", // only if using cookies/sessions
       });
 
       if (res.ok) {
-        const result = await res.json();
-        console.log("✅ Registration successful:", result);
-        alert("✅ Registration successful!");
+      const result = await res.json();
+      console.log("✅ Registration successful:", result);
+      alert("✅ Registration successful!");
       } else {
-        const text = await res.text();
-        console.error("❌ Backend error:", text);
-        alert(`❌ Server responded with status ${res.status}: ${text}`);
+      const text = await res.text();
+      console.error("❌ Backend error:", text);
+      alert(`❌ Server responded with status ${res.status}: ${text}`);
       }
     } catch (error: any) {
+      // Expanded error handling
       console.error("⚠️ Network/Fetch error:", error);
+
+      // Check for common blockers
+      if (error.name === "TypeError" && error.message === "Failed to fetch") {
+      alert(
+        `⚠️ Request failed: ${error.message}\n\nPossible reasons:\n- Backend server (${apiBase}) is not running or unreachable\n- CORS policy is blocking the request\n- Network connectivity issue\n- Invalid API endpoint\n\nCheck browser console for more details.`
+      );
+      } else if (error.message?.includes("NetworkError")) {
+      alert(
+        `⚠️ Network error: ${error.message}\n\nCheck your internet connection and backend server status.`
+      );
+      } else {
       alert(`⚠️ Request failed: ${error.message || error}`);
+      }
     }
-  };
+    };
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 to-blue-100 py-12 px-4">
