@@ -28,49 +28,52 @@ const WorkshopRegistration: React.FC = () => {
   const workshopDates = getUpcomingWorkshops(3);
 
   // Handle form submit
-// inside handleSubmit
-const handleSubmit = async (e: React.FormEvent) => {
-  e.preventDefault();
-  const formData = new FormData(e.target as HTMLFormElement);
-  const raw = Object.fromEntries(formData.entries());
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    const formData = new FormData(e.target as HTMLFormElement);
+    const raw = Object.fromEntries(formData.entries());
 
-  // Map frontend → backend
-  const data = {
-    full_name: raw.FullName,
-    email: raw.Email,
-    whatsapp: raw.WhatsApp,
-    referral_source: raw.ReferralSource || "",
-    language: raw.Language || "",
-    background: raw.Background,
-    workshop_date: raw.WorkshopDate,
-    career_goal: raw.CareerGoal || "",
-    ai_experience: raw.AIExperience || "",
-    consent: raw.Consent === "on", // checkbox → boolean
-  };
+    // Map frontend → backend
+    const data = {
+      full_name: raw.FullName,
+      email: raw.Email,
+      whatsapp: raw.WhatsApp,
+      referral_source: raw.ReferralSource || "",
+      language: raw.Language || "",
+      background: raw.Background,
+      workshop_date: raw.WorkshopDate,
+      career_goal: raw.CareerGoal || "",
+      ai_experience: raw.AIExperience || "",
+      consent: raw.Consent === "on", // checkbox → boolean
+    };
 
-  try {
-    const res = await fetch("https://www.clcclc.work.gd/workshop/", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        // ❌ removed X-API-KEY
-      },
-      body: JSON.stringify(data),
-    });
+    const apiBase = process.env.NEXT_PUBLIC_API_BASE || "https://clcclc.work.gd";
 
-    if (res.ok) {
-      alert("✅ Registration successful!");
-    } else {
-      const text = await res.text(); // read full response (not only JSON)
-      console.error("❌ Backend error:", text);
-      alert(`❌ Server responded with status ${res.status}: ${text}`);
+    try {
+      const res = await fetch(`${apiBase}/workshop/`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          // "X-API-KEY": process.env.NEXT_PUBLIC_API_KEY || "", // add if needed
+        },
+        body: JSON.stringify(data),
+        credentials: "include", // only if using cookies/sessions
+      });
+
+      if (res.ok) {
+        const result = await res.json();
+        console.log("✅ Registration successful:", result);
+        alert("✅ Registration successful!");
+      } else {
+        const text = await res.text();
+        console.error("❌ Backend error:", text);
+        alert(`❌ Server responded with status ${res.status}: ${text}`);
+      }
+    } catch (error: any) {
+      console.error("⚠️ Network/Fetch error:", error);
+      alert(`⚠️ Request failed: ${error.message || error}`);
     }
-  } catch (error: any) {
-    console.error("⚠️ Network/Fetch error:", error);
-    alert(`⚠️ Request failed: ${error.message || error}`);
-  }
-};
-
+  };
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 to-blue-100 py-12 px-4">
