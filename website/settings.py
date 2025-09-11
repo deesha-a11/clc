@@ -14,9 +14,7 @@ from pathlib import Path
 import os
 from dotenv import load_dotenv
 load_dotenv()  # loads .env if present
-CORS_ALLOWED_ORIGINS = [
-    "https://www.clcclc.gd",
-]
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 # settings.py
@@ -37,6 +35,9 @@ DEBUG = os.getenv("DEBUG", "False") == "True"
 ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS", "").split(",")
 CORS_ALLOW_ALL_ORIGINS = true  # (or set specific origins)
 
+CORS_ALLOWED_ORIGINS = [
+    "https://www.careerlabconsulting.com",  # your frontend
+]
 
 
 
